@@ -1,11 +1,16 @@
 var http = require('http');
+var mustache = require("mustache");
 
 requestHandler = function(req, res) {
 	console.log('Inside Req');
 	if(req.url == '/') {
-		res.end('Welcome Home');
-	}
-	else {
+		
+		result = mustache.render("Hello {{first_name}} {{last_name}}", {
+				"first_name": "Divya",
+				"last_name": "K"
+			})
+		res.end(result);
+	}else {
 		res.end("Don't wander away from home")
 	}
 }
